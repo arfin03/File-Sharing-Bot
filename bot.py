@@ -30,23 +30,27 @@ class Bot(Client):
         usr_bot_me = await self.get_me()
         self.uptime = datetime.now()
 
-        if FORCE_SUB_CHANNEL:
-            try:
-                link = (await self.get_chat(FORCE_SUB_CHANNEL)).invite_link
-                if not link:
-                    await self.export_chat_invite_link(FORCE_SUB_CHANNEL)
-                    link = (await self.get_chat(FORCE_SUB_CHANNEL)).invite_link
-                self.invitelink = link
-            except Exception as a:
-                self.LOGGER(__name__).warning(a)
-                self.LOGGER(__name__).warning("Bot can't Export Invite link from Force Sub Channel!")
-                self.LOGGER(__name__).warning(f"Please Double check the FORCE_SUB_CHANNEL value and Make sure Bot is Admin in channel with Invite Users via Link Permission, Current Force Sub Channel Value: {FORCE_SUB_CHANNEL}")
-                self.LOGGER(__name__).info("\nBot Stopped. Join https://t.me/CodeXBotzSupport for support")
-                sys.exit()
+        force_sub_channels = [FORCE_SUB_CHANNEL, FORCE_SUB_CHANNEL2, FORCE_SUB_CHANNEL3, FORCE_SUB_CHANNEL4]
+
+        for channel in force_sub_channels:
+            if channel:
+                try:
+                    link = (await self.get_chat(channel)).invite_link
+                    if not link:
+                        await self.export_chat_invite_link(channel)
+                        link = (await self.get_chat(channel)).invite_link
+                    self.invitelink = link
+                except Exception as a:
+                    self.LOGGER(__name__).warning(a)
+                    self.LOGGER(__name__).warning(f"Bot can't Export Invite link from Force Sub Channel {channel}!")
+                    self.LOGGER(__name__).warning(f"Please Double check the {channel} value and Make sure Bot is Admin in channel with Invite Users via Link Permission, Current Force Sub Channel Value: {channel}")
+                    self.LOGGER(__name__).info("\nBot Stopped. Join https://t.me/CodeXBotzSupport for support")
+                    sys.exit()
+
         try:
             db_channel = await self.get_chat(CHANNEL_ID)
             self.db_channel = db_channel
-            test = await self.send_message(chat_id = db_channel.id, text = "Test Message")
+            test = await self.send_message(chat_id=db_channel.id, text="Test Message")
             await test.delete()
         except Exception as e:
             self.LOGGER(__name__).warning(e)
@@ -65,7 +69,7 @@ class Bot(Client):
 ░╚════╝░░╚════╝░╚═════╝░╚══════╝╚═╝░░╚═╝╚═════╝░░╚════╝░░░░╚═╝░░░╚══════╝
                                           """)
         self.username = usr_bot_me.username
-        #web-response
+        # web-response
         app = web.AppRunner(await web_server())
         await app.setup()
         bind_address = "0.0.0.0"
