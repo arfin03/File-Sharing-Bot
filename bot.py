@@ -6,7 +6,7 @@ from datetime import datetime
 from config import (API_HASH, APP_ID, TG_BOT_TOKEN, FORCE_SUB_CHANNEL, 
                     FORCE_SUB_CHANNEL2, FORCE_SUB_CHANNEL3, FORCE_SUB_CHANNEL4, 
                     CHANNEL_ID, PORT)
-from web_server import web_server
+from plugins.web_server import web_server
 
 
 class Bot(Client):
