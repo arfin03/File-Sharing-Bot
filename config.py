@@ -14,7 +14,7 @@ APP_ID = int(os.environ.get("APP_ID", "29726755"))
 API_HASH = os.environ.get("API_HASH", "0a708211226ff747f38c47a80a5e29c0")
 
 # Your db channel Id
-CHANNEL_ID = int(os.environ.get("CHANNEL_ID", "-1002064033917"))
+CHANNEL_ID = int(os.environ.get("CHANNEL_ID", "-1002182002460"))
 
 # OWNER ID
 OWNER_ID = int(os.environ.get("OWNER_ID", "6995317382"))
@@ -27,9 +27,9 @@ DB_URI = os.environ.get("DATABASE_URL", "mongodb+srv://arfin01:Arkaku123@cluster
 DB_NAME = os.environ.get("DATABASE_NAME", "filesharexbot")
 
 # Force sub channel id, if you want enable force sub
-FORCE_SUB_CHANNEL = int(os.environ.get("FORCE_SUB_CHANNEL", "0"))
-FORCE_SUB_CHANNEL2 = int(os.environ.get("FORCE_SUB_CHANNEL2", "0"))
-FORCE_SUB_CHANNEL3 = int(os.environ.get("FORCE_SUB_CHANNEL3", "0"))
+FORCE_SUB_CHANNEL = int(os.environ.get("FORCE_SUB_CHANNEL", "-1001863480442"))
+FORCE_SUB_CHANNEL2 = int(os.environ.get("FORCE_SUB_CHANNEL2", "-1002101999638"))
+FORCE_SUB_CHANNEL3 = int(os.environ.get("FORCE_SUB_CHANNEL3", "-1002207753207"))
 FORCE_SUB_CHANNEL4 = int(os.environ.get("FORCE_SUB_CHANNEL4", "0"))
 
 # Number of workers
